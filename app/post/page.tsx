@@ -19,7 +19,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import Markdown from '@/components/ui/markdown'
-export default function page() {
+export default function Page() {
   const [view,setView]=useState(false)
    const [title,setTitle]=useState('')
     const [content,setContent]=useState('')
