@@ -17,8 +17,8 @@ export default async function Home() {
    })
 
    const isAuth=false
-   let likeLoads=false
-   let liked=false
+   const likeLoads=false
+   const liked=false
 
   return (
    
