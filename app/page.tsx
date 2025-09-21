@@ -15,7 +15,7 @@ export default async function Home() {
           Likes:true
         }
    })
-
+  console.log("Posts fetched:", posts.length); // Check Vercel logs
    const isAuth=false
    const likeLoads=false
    const liked=false

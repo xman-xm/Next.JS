@@ -2,9 +2,9 @@
 import { Button } from '@/components/ui/button'
 import SignInButton from '@/components/ui/signinButton'
 import { ArrowLeft, Eye, EyeOff, LogIn, Pen, Sparkles } from 'lucide-react'
-import Link from 'next/link'
 import React, { useState } from 'react'
 import { useSession, signIn, signOut } from "next-auth/react"
+import { useRouter } from 'next/navigation'
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -19,12 +19,14 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import Markdown from '@/components/ui/markdown'
+import { redirect } from 'next/dist/server/api-utils'
 export default function Page() {
   const [view,setView]=useState(false)
    const [title,setTitle]=useState('')
     const [content,setContent]=useState('')
       const [load,setLoad]=useState(false)
         const session = useSession();
+  const router = useRouter();
 const handleAI=async()=>{
   const res = await askGemini("Generate a detailed blog post about "+title+"In the markdown format with appropriate headings, subheadings,images,text styles like italic and bold and include tables  and bullet points.");
   setContent(res)
@@ -33,13 +35,15 @@ const handleAI=async()=>{
     <div className=' min-h-screen bg-background' >
       <header className={ `border-b  w-full ${session.status === "authenticated"?'':'fixed'}` } >
 <div className="container mx-auto px-4 py-4 flex items-center justify-between " >
-  <Link href={'/'} >
-  <Button
+
+  <Button onClick={()=>{
+   router.push('/')
+  }}
   variant={'ghost'}
   >
 <ArrowLeft></ArrowLeft>Back to home
   </Button>
-  </Link>
+
 
 </div>
       </header>
