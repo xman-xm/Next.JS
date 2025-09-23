@@ -6,6 +6,9 @@ import { Card, CardContent, CardTitle } from '@/components/ui/card';
 import { Avatar, AvatarImage } from '@radix-ui/react-avatar';
 import { AvatarFallback } from '@/components/ui/avatar';
 import Image from 'next/image';
+import { ArrowLeft } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 export default async function Page({ params }: { params: { postID: string } }) {
   const post = await prisma.post.findUnique({
@@ -18,10 +21,20 @@ export default async function Page({ params }: { params: { postID: string } }) {
   }
 
   return (
-    <>
-      <main className='container mx-auto px-4 py-8 min-h-screen w-full flex  justify-center' >
+    <div className='min-h-screen bg-background' >
+             <header className={ `border-b  w-full ` } >
+<div className="container mx-auto px-4 py-4 flex items-center justify-between " >
+<Link href='/' className='flex items-center space-x-2'>
 
-        <div>
+<ArrowLeft></ArrowLeft>Back to home
+
+</Link>
+
+</div>
+      </header>
+      <main className='container mx-auto px-4 py-8 min-h-screen w-full flex  justify-center' >
+     
+     <div>
    <Card className='md:w-[700px]  lg:w-[700px]  sm:w-full  mb-4 p-4   '>
                 
 
@@ -45,8 +58,9 @@ export default async function Page({ params }: { params: { postID: string } }) {
 
            </Avatar>
              <div>
-                <p className=' font-medium ml-2 ' >{post?.author?.name || 'Unknown Author'}</p>
-                <p className=' text-sm text-muted-foreground ml-2 ' >{new Date(post.createdAt).toLocaleDateString()}</p>
+                       <Link href={`/account/${post.author.id}`} className="hover:underline" >
+<p className="text-sm font-medium" >@{post.author.name}</p>
+            </Link><p className=' text-sm text-muted-foreground ml-2 ' >{new Date(post.createdAt).toLocaleDateString()}</p>
              </div>
               </div>
         </Card>
@@ -60,6 +74,6 @@ export default async function Page({ params }: { params: { postID: string } }) {
         </Card>
         </div>
       </main>
-    </>
+    </div>
   );
 }

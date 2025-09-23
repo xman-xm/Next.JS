@@ -64,8 +64,11 @@ export default async function Home() {
              )}
 
            </Avatar>
-           <div className="flex flex-col space-x-2 ">
-     <p className="text-sm font-medium" >@{post.author.name}</p>
+           <div className="flex flex-col space-x-2  ">
+            <Link href={`/account/${post.author.id}`} className="hover:underline" >
+<p className="text-sm font-medium" >@{post.author.name}</p>
+            </Link>
+     
       <p className="text-xs text-muted-foreground" >{new Date(post.createdAt).toLocaleDateString()}</p>
            </div>
          

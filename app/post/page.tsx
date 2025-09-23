@@ -28,7 +28,7 @@ export default function Page() {
         const session = useSession();
   const router = useRouter();
 const handleAI=async()=>{
-  const res = await askGemini("Generate a detailed blog post about "+title+"In the markdown format with appropriate headings, subheadings,images,text styles like italic and bold and include tables  and bullet points.");
+  const res = await askGemini("Generate a detailed blog post about "+title+"In the markdown format with appropriate headings, subheadings,images,text styles like italic and bold and include tables  and bullet points.Search for valiable and hosted images and include them in the markdown with appropriate markdown image syntax. Also include relevant links where necessary.Make sure that the images are visible and the link does not show any errors or html");
   setContent(res)
 }
   return (
@@ -40,6 +40,7 @@ const handleAI=async()=>{
    router.push('/')
   }}
   variant={'ghost'}
+  
   >
 <ArrowLeft></ArrowLeft>Back to home
   </Button>
